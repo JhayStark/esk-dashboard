@@ -8,7 +8,7 @@ import FarmerOverViewStats from '@/components/card-components/FarmerOverViewStat
 const Page = () => {
   return (
     <div className='space-y-5'>
-      <div className='grid-cols-2 lg:grid-cols-4 gap-4 font-sans  grid'>
+      <div className='md:grid-cols-2  lg:grid-cols-4 gap-4 font-sans  grid'>
         <FarmerOverViewStats
           title='All Countries'
           icon={<FaGlobeAfrica className='text-primary' />}
@@ -35,7 +35,7 @@ const Page = () => {
         />
       </div>
       <div className='grid grid-cols-4 gap-4 font-sans  '>
-        <div className='col-span-4 px-5 py-2 bg-white rounded-lg lg:col-span-3 '>
+        <div className='col-span-4 px-5 py-2 bg-white rounded-lg lg:col-span-3 text-white '>
           test
         </div>
         <div className='flex-col items-center hidden px-3 3xl:px-8 overflow-y-auto bg-white rounded-lg lg:flex  max-h-[46rem] '>

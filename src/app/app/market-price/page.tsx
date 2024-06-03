@@ -11,6 +11,7 @@ import {
 import {
   useGetCountriesQuery,
   useGetMarketPricesQuery,
+  useGetCommoditiesQuery,
 } from '@/lib/features/marketApiSlice';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import TabsFilter from '@/components/ui-components/TabsFilter';
@@ -61,7 +62,14 @@ const Page = () => {
     country: selectedCountry,
   });
   const { data: countries } = useGetCountriesQuery({});
+  const { data: commoditiesQuery } = useGetCommoditiesQuery({});
 
+  const commodityOptions = useMemo(() => {
+    console.log(commoditiesQuery?.data);
+    return commoditiesQuery?.data.slice(0, 4);
+  }, []);
+
+  console.log(commodityOptions);
   const countryObjects = useMemo(() => countries?.data || [], [countries]);
 
   const countryOptions = useMemo(() => {

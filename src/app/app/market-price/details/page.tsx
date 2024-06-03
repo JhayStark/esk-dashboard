@@ -1,17 +1,17 @@
 'use client';
 
 import React, { useMemo, useState } from 'react';
-import { generateRandomHexCode } from '@/lib/utils';
-import {
-  LineChart,
-  Line,
-  XAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-  YAxis,
-} from 'recharts';
+// import { generateRandomHexCode } from '@/lib/utils';
+// import {
+//   LineChart,
+//   Line,
+//   XAxis,
+//   CartesianGrid,
+//   Tooltip,
+//   Legend,
+//   ResponsiveContainer,
+//   YAxis,
+// } from 'recharts';
 import { Combobox } from '@/components/ui-components/ComboBox';
 import {
   Popover,
@@ -27,7 +27,7 @@ import TabsFilter from '@/components/ui-components/TabsFilter';
 import { Filter } from 'lucide-react';
 import { TableColumn } from 'react-data-table-component';
 import ServerSideDataTableBase from '@/components/datatable-base/ServerSideDataTableBase';
-import AreaChart from '@/components/charts/AreaChart';
+// import { generateWeeklyData } from '@/lib/utils';
 import Container from '@/components/card-components/Container';
 
 const pricesColumns: TableColumn<any>[] = [
@@ -127,7 +127,7 @@ const Page = () => {
 
   return (
     <>
-      <Container className='h-[500px] '>
+      {/* <Container className='h-[500px] '>
         <ResponsiveContainer width='100%' height='100%'>
           <LineChart width={500} height={300} data={[]}>
             <CartesianGrid strokeDasharray='3 3' />
@@ -148,7 +148,7 @@ const Page = () => {
             })}
           </LineChart>
         </ResponsiveContainer>
-      </Container>
+      </Container> */}
       <div className='flex justify-between items-center'>
         <Popover>
           <PopoverTrigger className='lg:hidden flex items-center gap-x-2 text-primary font-medium bg-white rounded-md p-2 shadow-md'>

@@ -8,7 +8,7 @@ import { ageGroupBarGraph, regionBarGraph } from '../../../../farmerData';
 const Page = () => {
   return (
     <div className='space-y-5'>
-      <div className='grid-cols-2 lg:grid-cols-4 gap-4 font-sans  grid'>
+      <div className=' md:grid-cols-2 lg:grid-cols-4 gap-4 font-sans  grid'>
         <FarmerOverViewStats
           title='All Countries'
           icon={<FaGlobeAfrica className='text-primary' />}

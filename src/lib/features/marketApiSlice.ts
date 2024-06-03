@@ -19,8 +19,14 @@ const marketPriceApis = apiSlice.injectEndpoints({
     getCountries: builder.query({
       query: () => `${backendUrl}/countries`,
     }),
+    getCommodities: builder.query({
+      query: () => `${backendUrl}/market-prices/commodities`,
+    }),
   }),
 });
 
-export const { useGetMarketPricesQuery, useGetCountriesQuery } =
-  marketPriceApis;
+export const {
+  useGetMarketPricesQuery,
+  useGetCountriesQuery,
+  useGetCommoditiesQuery,
+} = marketPriceApis;
