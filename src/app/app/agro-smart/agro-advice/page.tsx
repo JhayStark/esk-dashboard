@@ -27,7 +27,7 @@ const Page = () => {
           setSelectedMonth={setSelectedMonth}
         />
       </div>
-      <Container className='hidden xl:block  '>test</Container>
+      <Container className='hidden xl:block text-white  '>test</Container>
     </div>
   );
 };

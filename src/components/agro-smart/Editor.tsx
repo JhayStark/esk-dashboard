@@ -95,7 +95,7 @@ const Editor = ({ date, setLocation }: any) => {
             />
           </div>
           <div className='flex justify-between items-center'>
-            <p>Add voice messages</p>
+            <p className='text-white'>Add voice messages</p>
             <div className='flex gap-x-2'>
               <Button variant='destructive'>Cancel</Button>
               <Button>Submit</Button>

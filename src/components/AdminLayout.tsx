@@ -113,11 +113,11 @@ const menuItems = [
   //   icon: <CloudSun className='h-6 w-6' />,
   //   link: '/app/weather',
   // },
-  // {
-  //   name: 'Settings',
-  //   icon: <SettingsIcon className='h-6 w-6' />,
-  //   link: '/app/settings',
-  // },
+  {
+    name: 'Settings',
+    icon: <SettingsIcon className='h-6 w-6' />,
+    link: '/app/settings',
+  },
 ];
 
 export default function ClientLayout({
