@@ -24,7 +24,7 @@ const baseQueryWithReath = async (args: any, api: any, extraOptions: any) => {
     if (result.error && result.error.status === 401) {
       localStorage.removeItem('persistedData');
       dispatch(logout());
-      window.location.replace('/login');
+      window.location.replace('/auth');
     }
     console.log('no token');
   }

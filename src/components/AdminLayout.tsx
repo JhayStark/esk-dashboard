@@ -125,6 +125,10 @@ export default function ClientLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const logout = () => {
+    localStorage.removeItem('persistedData');
+    window.location.replace('/auth');
+  };
   return (
     <div className='grid min-h-screen w-full grid-cols-1  xl:grid-cols-[280px_1fr]'>
       <div className='hidden bg-[#073150] xl:block'>
@@ -177,7 +181,9 @@ export default function ClientLayout({
               {/* <DropdownMenuItem>Settings</DropdownMenuItem>
               <DropdownMenuItem>Support</DropdownMenuItem> */}
               <DropdownMenuSeparator />
-              <DropdownMenuItem>Logout</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => logout()}>
+                Logout
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </header>

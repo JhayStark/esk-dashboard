@@ -16,12 +16,7 @@ const RequireAuth = ({
     const persistedData = localStorage.getItem('persistedData');
     const userSession = persistedData ? JSON.parse(persistedData) : false;
 
-    const isProtectedRoute = !(
-      pathName.includes('login') ||
-      pathName.includes('signup') ||
-      pathName.includes('waitlist') ||
-      pathName === '/'
-    );
+    const isProtectedRoute = !(pathName.includes('auth') || pathName === '/');
 
     if (!userSession && isProtectedRoute) {
       router.replace('/auth');
