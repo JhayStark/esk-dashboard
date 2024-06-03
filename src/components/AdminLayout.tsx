@@ -166,16 +166,16 @@ export default function ClientLayout({
               >
                 <Avatar className=' rounded-full'>
                   <AvatarImage alt='@shadcn' src='' />
-                  <AvatarFallback>JD</AvatarFallback>
+                  <AvatarFallback>ES</AvatarFallback>
                 </Avatar>
                 <span className='sr-only'>Toggle user menu</span>
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align='end'>
-              <DropdownMenuLabel>John Doe</DropdownMenuLabel>
+              <DropdownMenuLabel>Super Admin</DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>Settings</DropdownMenuItem>
-              <DropdownMenuItem>Support</DropdownMenuItem>
+              {/* <DropdownMenuItem>Settings</DropdownMenuItem>
+              <DropdownMenuItem>Support</DropdownMenuItem> */}
               <DropdownMenuSeparator />
               <DropdownMenuItem>Logout</DropdownMenuItem>
             </DropdownMenuContent>

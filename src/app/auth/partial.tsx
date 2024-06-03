@@ -11,10 +11,13 @@ import { Button } from '@/components/ui/button';
 import { Loader2 } from 'lucide-react';
 import { useLoginMutation } from '@/lib/features/auth/authApiSlice';
 import { useToast } from '@/components/ui/use-toast';
+import { useAppDispatch } from '@/lib/hooks';
+import { login } from '@/lib/features/auth/authSlice';
+import { useRouter } from 'next/navigation';
 
 const defaultValues = {
-  email: 'admin@esoko.com',
-  password: 'password123',
+  email: 'superdmin@esoko.com',
+  password: 'securepassword',
 };
 
 const formSchema = z.object({
@@ -26,16 +29,27 @@ const formSchema = z.object({
 
 const AuthPartial = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [login] = useLoginMutation();
+  const [loginUser] = useLoginMutation();
   const form = useForm({ defaultValues, resolver: zodResolver(formSchema) });
   const { toast } = useToast();
+  const dispatch = useAppDispatch();
+  const router = useRouter();
 
   const onSubmit = async (data: any) => {
     try {
       setIsLoading(true);
-      console.log(data);
-      await login(data).unwrap();
+      await loginUser(data)
+        .unwrap()
+        .then(res => {
+          const userDataToSet = {
+            token: res?.token,
+            user: res?.user,
+          };
+          localStorage.setItem('persistedData', JSON.stringify(userDataToSet));
+          dispatch(login(userDataToSet));
+        });
       setIsLoading(false);
+      router.push('/app');
     } catch (error) {
       setIsLoading(false);
       toast({

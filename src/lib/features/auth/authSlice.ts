@@ -12,7 +12,7 @@ export const authSlice = createSlice({
       const { token } = action.payload;
       state.token = token;
     },
-    logout: (state, action) => {
+    logout: state => {
       state.user = {};
       state.token = '';
     },

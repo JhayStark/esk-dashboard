@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { setToken, setUser } from '../features/auth/authSlice';
+import { login, logout } from '../features/auth/authSlice';
 
 const baseQuery = fetchBaseQuery({
   baseUrl: '/',
@@ -14,8 +14,18 @@ const baseQuery = fetchBaseQuery({
 });
 
 const baseQueryWithReath = async (args: any, api: any, extraOptions: any) => {
+  const { dispatch } = api;
   let result = await baseQuery(args, api, extraOptions);
   if (result.error && result.error.status === 401) {
+    const persistedData = localStorage.getItem('persistedData');
+    dispatch(login(persistedData));
+    // Retry original query with existing token
+    result = await baseQuery(args, api, extraOptions);
+    if (result.error && result.error.status === 401) {
+      localStorage.removeItem('persistedData');
+      dispatch(logout());
+      window.location.replace('/login');
+    }
     console.log('no token');
   }
   return result;
@@ -23,6 +33,6 @@ const baseQueryWithReath = async (args: any, api: any, extraOptions: any) => {
 
 export const apiSlice = createApi({
   baseQuery: baseQueryWithReath,
-  tagTypes: ['User', 'Prices'],
+  tagTypes: ['User', 'Prices', 'Auth'],
   endpoints: builder => ({}),
 });
