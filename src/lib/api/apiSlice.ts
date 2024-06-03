@@ -2,8 +2,8 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { setToken, setUser } from '../features/auth/authSlice';
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: process.env.NEXT_PUBLIC_URL || 'http://localhost:5000',
-  credentials: 'include',
+  baseUrl: '/',
+  credentials: 'omit',
   prepareHeaders: (headers, { getState }: any) => {
     const token = getState().auth.token;
     if (token) {
@@ -23,6 +23,6 @@ const baseQueryWithReath = async (args: any, api: any, extraOptions: any) => {
 
 export const apiSlice = createApi({
   baseQuery: baseQueryWithReath,
-  tagTypes: ['User'],
+  tagTypes: ['User', 'Prices'],
   endpoints: builder => ({}),
 });
