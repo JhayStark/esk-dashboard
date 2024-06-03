@@ -1,10 +1,14 @@
 'use client';
 
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import * as z from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useGetFarmerTypesQuery } from '@/lib/features/agroSmartApiSlice';
+import {
+  useAddClimateAdviceMutation,
+  useEditClimateAdviceMutation,
+  useGetFarmerTypesQuery,
+} from '@/lib/features/agroSmartApiSlice';
 import { Form } from '../ui/form';
 import {
   InputFormField,
@@ -21,8 +25,10 @@ const formSchema = z.object({
   body: z.string().min(1, { message: 'Please enter a body' }),
 });
 
-const Editor = () => {
+const Editor = ({ date, setLocation }: any) => {
   const { data: farmerTypes } = useGetFarmerTypesQuery({});
+  const [addClimateAdvice] = useAddClimateAdviceMutation();
+  const [editClimateAdvice] = useEditClimateAdviceMutation();
   const form = useForm({
     resolver: zodResolver(formSchema),
   });
@@ -44,11 +50,26 @@ const Editor = () => {
       label: commodity,
     }));
   }, [form.watch('farmer_type'), farmerTypeOptions]);
-  console.log(form.watch());
+
+  useEffect(() => {
+    setLocation(form.watch('location'));
+  }, [form.watch('location')]);
+
+  const submitFormData = async (data: any) => {
+    try {
+      await addClimateAdvice({ body: data }).unwrap();
+    } catch (error) {
+      console.log('error');
+    }
+  };
   return (
     <>
       <Form {...form}>
-        <form action='' className=' flex flex-col h-full py-1 '>
+        <form
+          action=''
+          className=' flex flex-col h-full py-1'
+          onSubmit={form.handleSubmit(submitFormData)}
+        >
           <div className='flex items-center justify-between'>
             <SelectFormField
               form={form}

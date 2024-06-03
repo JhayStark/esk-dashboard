@@ -108,16 +108,16 @@ const menuItems = [
     icon: <CandlestickChart className='h-6 w-6' />,
     link: '/app/market-price',
   },
-  {
-    name: 'Weather',
-    icon: <CloudSun className='h-6 w-6' />,
-    link: '/app/weather',
-  },
-  {
-    name: 'Settings',
-    icon: <SettingsIcon className='h-6 w-6' />,
-    link: '/app/settings',
-  },
+  // {
+  //   name: 'Weather',
+  //   icon: <CloudSun className='h-6 w-6' />,
+  //   link: '/app/weather',
+  // },
+  // {
+  //   name: 'Settings',
+  //   icon: <SettingsIcon className='h-6 w-6' />,
+  //   link: '/app/settings',
+  // },
 ];
 
 export default function ClientLayout({

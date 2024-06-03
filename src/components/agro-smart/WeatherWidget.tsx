@@ -1,7 +1,14 @@
+'use client';
+
 import Image from 'next/image';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 const WeatherWidget = ({ location = 'Accra, Ghana', weatherData }: any) => {
+  const [currentTime, setCurrentTime] = useState('');
+  useEffect(() => {
+    setCurrentTime(new Date().toUTCString());
+  }, []);
+
   return (
     <div className='flex flex-col items-center justify-around h-full flex-grow rounded-lg lg:flex shadow-3xl bg-gradient-to-r from-blue-500 to-blue-400'>
       <div className='flex flex-col items-center'>
@@ -9,7 +16,7 @@ const WeatherWidget = ({ location = 'Accra, Ghana', weatherData }: any) => {
           {location}
         </h2>
         <p className='antialiased font-medium text-white opacity-80 '>
-          {new Date().toUTCString()}
+          {currentTime}
         </p>
       </div>
       <div className='flex items-center justify-around w-[70%]'>

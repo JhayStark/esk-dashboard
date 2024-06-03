@@ -1,6 +1,17 @@
 'use client';
 
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
+import { generateRandomHexCode } from '@/lib/utils';
+import {
+  LineChart,
+  Line,
+  XAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+  YAxis,
+} from 'recharts';
 import { Combobox } from '@/components/ui-components/ComboBox';
 import {
   Popover,
@@ -17,6 +28,7 @@ import { Filter } from 'lucide-react';
 import { TableColumn } from 'react-data-table-component';
 import ServerSideDataTableBase from '@/components/datatable-base/ServerSideDataTableBase';
 import AreaChart from '@/components/charts/AreaChart';
+import Container from '@/components/card-components/Container';
 
 const pricesColumns: TableColumn<any>[] = [
   {
@@ -61,6 +73,7 @@ const Page = () => {
     country: selectedCountry,
   });
   const { data: countries } = useGetCountriesQuery({});
+  const [selectedMarkets, setSelectedMarkets] = useState<any>([]);
 
   const countryObjects = useMemo(() => countries?.data || [], [countries]);
 
@@ -114,9 +127,28 @@ const Page = () => {
 
   return (
     <>
-      <section>
-        <AreaChart />
-      </section>
+      <Container className='h-[500px] '>
+        <ResponsiveContainer width='100%' height='100%'>
+          <LineChart width={500} height={300} data={[]}>
+            <CartesianGrid strokeDasharray='3 3' />
+            <XAxis dataKey='name' />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            {selectedMarkets?.map((market: any) => {
+              return (
+                <Line
+                  key={market}
+                  type='monotone'
+                  dataKey={market}
+                  stroke={generateRandomHexCode()}
+                  activeDot={{ r: 8 }}
+                />
+              );
+            })}
+          </LineChart>
+        </ResponsiveContainer>
+      </Container>
       <div className='flex justify-between items-center'>
         <Popover>
           <PopoverTrigger className='lg:hidden flex items-center gap-x-2 text-primary font-medium bg-white rounded-md p-2 shadow-md'>

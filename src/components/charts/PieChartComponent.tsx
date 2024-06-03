@@ -6,7 +6,7 @@ const data01 = [
   { name: 'Voice', value: 1250, fill: '#45ADDA' },
 ];
 
-const PieChartComponent = ({ data = data01 }) => {
+const PieChartComponent = ({ data = data01 }: any) => {
   return (
     <ResponsiveContainer width='100%' height='70%' className='py-2 '>
       <PieChart width={400} height={400}>
@@ -19,7 +19,7 @@ const PieChartComponent = ({ data = data01 }) => {
           outerRadius={80}
           innerRadius={40}
           fill='#8884d8'
-          {...data.map((entry, index) => (
+          {...data.map((entry: any, index: any) => (
             <Cell key={`cell-${index}`} fill={entry.fill} />
           ))}
           paddingAngle={5}

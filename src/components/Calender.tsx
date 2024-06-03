@@ -34,10 +34,10 @@ function Calendar({
   setSelectedMonth,
 }: any) {
   const completedDateFormat = 'DD-MM-YYYY';
-  const [closeCalendar, setCloseCalendar] = useState(false);
-  const [completedDate, setCompletedDate] = useState([]);
+  const [closeCalendar, setCloseCalendar] = useState<any>(false);
+  const [completedDate, setCompletedDate] = useState<any>([]);
   const dateFormat = 'YYYY-MM-DD';
-  const [selectedDates, setSelectedDates] = useState([]);
+  const [selectedDates, setSelectedDates] = useState<any>([]);
 
   const weekdays = moment.weekdaysShort();
 
@@ -54,7 +54,7 @@ function Calendar({
     setCompletedDate(published);
   }, [published]);
 
-  function isPresentDay(date) {
+  function isPresentDay(date: any) {
     const today = new Date();
     // eslint-disable-next-line dot-notation
     const passedDays = new Date(date['_d']);
@@ -66,12 +66,12 @@ function Calendar({
     );
   }
 
-  const handleMonthChange = e => {
+  const handleMonthChange = (e: any) => {
     setSelectedMonth(moment(e.target.value, 'YYYY-MM'));
     setSelectedDate(startOfMonth);
   };
 
-  const handleDateClick = useCallback(date => {
+  const handleDateClick = useCallback((date: any) => {
     const momentDate = moment(date);
     setSelectedMonth(momentDate, 'YYYY-MM');
     setSelectedDate(date);

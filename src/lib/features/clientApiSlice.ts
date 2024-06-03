@@ -15,6 +15,9 @@ const clientApiSlice = apiSlice.injectEndpoints({
       query: ({ pageNumber = 1, pageSize = 10, filterText = '' }) =>
         `${backendUrl}/clients?page=${pageNumber}&limit=${pageSize}&search=${filterText}`,
     }),
+    getClientServiceStats: builder.query({
+      query: ({}) => `${backendUrl}/clients/total-users`,
+    }),
   }),
 });
 
@@ -22,4 +25,5 @@ export const {
   useTransactionsQuery,
   useClientServiceTotalsQuery,
   useGetClientsQuery,
+  useGetClientServiceStatsQuery,
 } = clientApiSlice;
