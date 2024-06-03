@@ -1,5 +1,5 @@
 import TabsNavigation from '@/components/ui-components/TabsNavigation';
-import React from 'react';
+import React, { Suspense } from 'react';
 
 const menuItems = [
   {
@@ -18,12 +18,14 @@ const Layout = ({
   children: React.ReactNode;
 }>) => {
   return (
-    <div className='space-y-3'>
-      <div className='flex items-center justify-center'>
-        <TabsNavigation menuItems={menuItems} />
+    <Suspense>
+      <div className='space-y-3'>
+        <div className='flex items-center justify-center'>
+          <TabsNavigation menuItems={menuItems} />
+        </div>
+        {children}
       </div>
-      {children}
-    </div>
+    </Suspense>
   );
 };
 
